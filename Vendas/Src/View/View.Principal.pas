@@ -33,6 +33,8 @@ type
     procedure lblYoutubeClick(Sender: TObject);
     procedure lblYoutubeMouseEnter(Sender: TObject);
     procedure lblYoutubeMouseLeave(Sender: TObject);
+    procedure Cidades1Click(Sender: TObject);
+    procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
   public
@@ -45,6 +47,26 @@ var
 implementation
 
 {$R *.dfm}
+
+uses
+  View.Cidades.Buscar;
+
+procedure TViewPrincipal.Cidades1Click(Sender: TObject);
+begin
+  ViewCidadesBuscar := TViewCidadesBuscar.Create(nil);
+
+  try
+    ViewCidadesBuscar.ShowModal;
+  finally
+    FreeAndNil(ViewCidadesBuscar);
+  end;
+
+end;
+
+procedure TViewPrincipal.FormCreate(Sender: TObject);
+begin
+  ReportMemoryLeaksOnShutdown := True;
+end;
 
 procedure TViewPrincipal.lblYoutubeClick(Sender: TObject);
 begin

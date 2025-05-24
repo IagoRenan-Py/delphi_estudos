@@ -1,0 +1,5 @@
+inherited ViewCidadesCadastrar: TViewCidadesCadastrar
+  Caption = 'Cadastrar cidades'
+  PixelsPerInch = 96
+  TextHeight = 13
+end

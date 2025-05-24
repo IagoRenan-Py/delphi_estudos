@@ -1,0 +1,64 @@
+unit View.Cidades.Cadastrar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Herancas.Cadastrar, Data.DB,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Model.Cidades.DM, Vcl.DBCtrls,
+  Vcl.Mask;
+
+type
+  TViewCidadesCadastrar = class(TViewHerancasCadastrar)
+    lbl: TLabel;
+    edtCodigo: TDBEdit;
+    lbl1: TLabel;
+    edtNome: TDBEdit;
+    lbl2: TLabel;
+    lbl3: TLabel;
+    edtCodigoIBGE: TDBEdit;
+    cbxUF: TDBComboBox;
+    procedure btnGravarClick(Sender: TObject);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewCidadesCadastrar: TViewCidadesCadastrar;
+
+implementation
+
+{$R *.dfm}
+
+procedure TViewCidadesCadastrar.btnGravarClick(Sender: TObject);
+begin
+
+  if(Trim(edtNome.Text).IsEmpty)then
+  begin
+    edtNome.SetFocus;
+    raise Exception.Create('Preencha o campo nome');
+  end;
+
+  if(Trim(cbxUF.Text).IsEmpty)then
+  begin
+    cbxUF.SetFocus;
+    raise Exception.Create('Preencha o campo UF');
+  end;
+
+  if(not Trim(edtCodigo.Text).IsEmpty)then
+  begin
+    if(Length(edtCodigo.Text) <> 7)then
+    begin
+      cbxUF.SetFocus;
+      raise Exception.Create('Código do IBGE deve conter 7 carateres');
+    end;
+  end;
+
+  DS_.DataSet.Post;
+
+  inherited;
+end;
+
+end.

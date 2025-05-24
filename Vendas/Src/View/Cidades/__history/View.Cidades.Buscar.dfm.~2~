@@ -1,0 +1,23 @@
+inherited ViewCidadesBuscar: TViewCidadesBuscar
+  Caption = 'Buscar cidades'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlGrid: TPanel
+    inherited pnlTotal: TPanel
+      inherited lblTotal: TLabel
+        ExplicitLeft = 570
+        ExplicitTop = 1
+      end
+    end
+  end
+  inherited pnlBottom: TPanel
+    inherited rg1: TRadioGroup
+      Columns = 3
+      ItemIndex = 1
+      Items.Strings = (
+        'C'#243'digo'
+        'Nome'
+        'UF')
+    end
+  end
+end

@@ -1,0 +1,146 @@
+inherited ViewCidadesCadastrar: TViewCidadesCadastrar
+  Caption = 'Cidades cadastrar/alterar '
+  ClientWidth = 498
+  OnCreate = FormCreate
+  OnShow = FormShow
+  ExplicitWidth = 514
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlDados: TPanel
+    Width = 498
+    ExplicitLeft = 56
+    ExplicitTop = 120
+    ExplicitWidth = 784
+    ExplicitHeight = 311
+    object lbl: TLabel
+      Left = 48
+      Top = 64
+      Width = 38
+      Height = 13
+      Caption = 'C'#243'digo'
+      FocusControl = edtCodigo
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbl1: TLabel
+      Left = 48
+      Top = 104
+      Width = 32
+      Height = 13
+      Caption = 'Nome'
+      FocusControl = edtNome
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbl2: TLabel
+      Left = 48
+      Top = 144
+      Width = 14
+      Height = 13
+      Caption = 'UF'
+      Font.Charset = DEFAULT_CHARSET
+      Font.Color = clWindowText
+      Font.Height = -11
+      Font.Name = 'Tahoma'
+      Font.Style = [fsBold]
+      ParentFont = False
+    end
+    object lbl3: TLabel
+      Left = 48
+      Top = 184
+      Width = 59
+      Height = 13
+      Caption = 'C'#243'digo IBGE'
+      FocusControl = edtCodigoIBGE
+    end
+    object edtCodigo: TDBEdit
+      Left = 48
+      Top = 77
+      Width = 134
+      Height = 21
+      Color = clBtnFace
+      DataField = 'ID'
+      DataSource = DS_
+      ReadOnly = True
+      TabOrder = 0
+    end
+    object edtNome: TDBEdit
+      Left = 48
+      Top = 117
+      Width = 417
+      Height = 21
+      DataField = 'NOME'
+      DataSource = DS_
+      TabOrder = 1
+    end
+    object edtCodigoIBGE: TDBEdit
+      Left = 48
+      Top = 197
+      Width = 134
+      Height = 21
+      DataField = 'CODIGO_IBGE'
+      DataSource = DS_
+      TabOrder = 3
+    end
+    object cbxUF: TDBComboBox
+      Left = 48
+      Top = 157
+      Width = 134
+      Height = 21
+      Style = csDropDownList
+      DataField = 'UF'
+      DataSource = DS_
+      Items.Strings = (
+        'AC'
+        'AL'
+        'AP'
+        'AM'
+        'BA'
+        'CE'
+        'DF'
+        'ES'
+        'GO'
+        'MA'
+        'MT'
+        'MS'
+        'MG'
+        'PA'
+        'PB'
+        'PR'
+        'PE'
+        'PI'
+        'RJ'
+        'RN'
+        'RS'
+        'RO'
+        'RR'
+        'SC'
+        'SP'
+        'SE'
+        'TO'
+        'EX')
+      TabOrder = 2
+    end
+  end
+  inherited pnlBottom: TPanel
+    Width = 498
+    inherited btnCancelar: TBitBtn
+      Left = 392
+    end
+    inherited btnGravar: TBitBtn
+      Left = 287
+    end
+  end
+  inherited DS_: TDataSource
+    DataSet = ModelCidadesDM.QCidadesCadastro
+    Left = 384
+  end
+end

@@ -1,0 +1,43 @@
+unit View.Cidades.Buscar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Herancas.Buscar, Data.DB,
+  Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids, Model.Cidades.DM;
+
+type
+  TViewCidadesBuscar = class(TViewHerancasBuscar)
+  private
+  protected
+  procedure BuscarDados; override;
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewCidadesBuscar: TViewCidadesBuscar;
+
+implementation
+
+{$R *.dfm}
+
+{ TViewCidadesBuscar }
+
+procedure TViewCidadesBuscar.BuscarDados;
+var
+  LCondicao: string;
+begin
+  case rdgFiltros.ItemIndex of
+    0: LCondicao:='';
+    1: LCondicao:='';
+    2: LCondicao:='';
+  end;
+
+
+  inherited;
+
+end;
+
+end.

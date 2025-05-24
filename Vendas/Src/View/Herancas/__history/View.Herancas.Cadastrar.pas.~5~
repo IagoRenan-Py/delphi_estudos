@@ -1,0 +1,63 @@
+unit View.Herancas.Cadastrar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls,
+  Data.DB;
+
+type
+  TViewHerancasCadastrar = class(TForm)
+    pnlDados: TPanel;
+    pnlBottom: TPanel;
+    btnCancelar: TBitBtn;
+    btnGravar: TBitBtn;
+    DS_: TDataSource;
+    procedure btnCancelarClick(Sender: TObject);
+    procedure btnGravarClick(Sender: TObject);
+    procedure FormKeyDown(Sender: TObject; var Key: Word; Shift: TShiftState);
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewHerancasCadastrar: TViewHerancasCadastrar;
+
+implementation
+
+{$R *.dfm}
+
+procedure TViewHerancasCadastrar.btnCancelarClick(Sender: TObject);
+begin
+  if(DS_.DataSet.State in [dsInsert, dsEdit])then
+    DS_.DataSet.Cancel;
+  Self.Close;
+  Self.ModalResult := mrCancel;
+end;
+
+procedure TViewHerancasCadastrar.btnGravarClick(Sender: TObject);
+begin
+  Self.Close;
+  Self.ModalResult := mrOk;
+end;
+
+procedure TViewHerancasCadastrar.FormKeyDown(Sender: TObject; var Key: Word;
+  Shift: TShiftState);
+begin
+  case(Key)of
+    VK_F3:
+      btnGravar.Click;
+    VK_F4:
+    begin
+      if(ssAlt in Shift) then
+        Key := 0;
+    end;
+    VK_ESCAPE:
+      btnCancelar.Click;
+  end;
+end;
+
+end.

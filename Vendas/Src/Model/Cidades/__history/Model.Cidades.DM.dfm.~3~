@@ -1,0 +1,25 @@
+object ModelCidadesDM: TModelCidadesDM
+  OldCreateOrder = False
+  Height = 507
+  Width = 975
+  object QCidadesCadastro: TFDQuery
+    Connection = ModelConexaoDM.FDconnection1
+    Left = 608
+    Top = 192
+  end
+  object QCidadesBusca: TFDQuery
+    Connection = ModelConexaoDM.FDconnection1
+    Left = 608
+    Top = 272
+  end
+  object DS_QCidadesCadastro: TDataSource
+    DataSet = QCidadesCadastro
+    Left = 720
+    Top = 184
+  end
+  object DS_QCidadesBusca: TDataSource
+    DataSet = QCidadesBusca
+    Left = 720
+    Top = 280
+  end
+end

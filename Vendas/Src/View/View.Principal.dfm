@@ -14,6 +14,7 @@ object ViewPrincipal: TViewPrincipal
   Menu = ViewPrincipalMainMenu
   OldCreateOrder = False
   WindowState = wsMaximized
+  OnCreate = FormCreate
   DesignSize = (
     1035
     555)
@@ -34,9 +35,6 @@ object ViewPrincipal: TViewPrincipal
       Align = alLeft
       BevelOuter = bvNone
       TabOrder = 0
-      ExplicitLeft = 0
-      ExplicitTop = 0
-      ExplicitHeight = 105
       object img1: TImage
         Left = 0
         Top = 0
@@ -334,7 +332,6 @@ object ViewPrincipal: TViewPrincipal
       BevelOuter = bvNone
       Padding.Left = 5
       TabOrder = 1
-      ExplicitLeft = 138
       object lblYoutube: TLabel
         Left = 5
         Top = 41
@@ -442,6 +439,7 @@ object ViewPrincipal: TViewPrincipal
           D8CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCD1D1D194BBE86C
           BAFF67B3FF76BCFAA7C0DFCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC}
         Caption = 'Cidades'
+        OnClick = Cidades1Click
       end
       object Pessoas1: TMenuItem
         Bitmap.Data = {
