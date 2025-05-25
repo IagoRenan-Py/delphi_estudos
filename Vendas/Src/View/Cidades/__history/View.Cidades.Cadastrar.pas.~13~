@@ -6,59 +6,71 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Herancas.Cadastrar, Data.DB,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Model.Cidades.DM, Vcl.DBCtrls,
-  Vcl.Mask;
+  Vcl.Mask, RTTI.FieldName;
 
 type
   TViewCidadesCadastrar = class(TViewHerancasCadastrar)
     lbl: TLabel;
     edtCodigo: TDBEdit;
     lbl1: TLabel;
+
+    [FieldName('NOME')]
     edtNome: TDBEdit;
+
     lbl2: TLabel;
     lbl3: TLabel;
+
+    [FieldName('CODIGO_IBGE')]
     edtCodigoIBGE: TDBEdit;
+
+    [FieldName('UF')]
     cbxUF: TDBComboBox;
     procedure btnGravarClick(Sender: TObject);
+    procedure FormShow(Sender: TObject);
   private
+
     { Private declarations }
   public
+
     { Public declarations }
   end;
-
-var
-  ViewCidadesCadastrar: TViewCidadesCadastrar;
 
 implementation
 
 {$R *.dfm}
 
+uses
+  Exceptions.FieldName,
+  Utils;
+
 procedure TViewCidadesCadastrar.btnGravarClick(Sender: TObject);
 begin
+  try
 
-  if(Trim(edtNome.Text).IsEmpty)then
-  begin
-    edtNome.SetFocus;
-    raise Exception.Create('Preencha o campo nome');
-  end;
-
-  if(Trim(cbxUF.Text).IsEmpty)then
-  begin
-    cbxUF.SetFocus;
-    raise Exception.Create('Preencha o campo UF');
-  end;
-
-  if(not Trim(edtCodigo.Text).IsEmpty)then
-  begin
-    if(Length(edtCodigo.Text) <> 7)then
+  except
+    on E: ExceptionsFieldName do
     begin
-      cbxUF.SetFocus;
-      raise Exception.Create('Código do IBGE deve conter 7 carateres');
+      ShowMessage('Erro: ' + E.Message + sLineBreak + 'FieldName: ' + E.FieldName);
+      Exit;
     end;
+
   end;
-
   DS_.DataSet.Post;
-
   inherited;
+end;
+
+procedure TViewCidadesCadastrar.FormShow(Sender: TObject);
+begin
+  inherited;
+
+  ModelCidadesDM.CadastrarGet(inherited IdRegistroAlterar);
+
+  if(DS_.DataSet.IsEmpty)then
+    DS_.DataSet.Append
+  else
+    DS_.DataSet.Edit;
+
+  edtNome.SetFocus;
 end;
 
 end.

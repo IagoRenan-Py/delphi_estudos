@@ -8,10 +8,7 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
   TextHeight = 13
   inherited pnlDados: TPanel
     Width = 498
-    ExplicitLeft = 56
-    ExplicitTop = 120
-    ExplicitWidth = 784
-    ExplicitHeight = 311
+    ExplicitWidth = 498
     object lbl: TLabel
       Left = 48
       Top = 64
@@ -98,6 +95,7 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
       Style = csDropDownList
       DataField = 'UF'
       DataSource = DS_
+      DropDownCount = 28
       Items.Strings = (
         'AC'
         'AL'
@@ -132,11 +130,14 @@ inherited ViewCidadesCadastrar: TViewCidadesCadastrar
   end
   inherited pnlBottom: TPanel
     Width = 498
+    ExplicitWidth = 498
     inherited btnCancelar: TBitBtn
       Left = 392
+      ExplicitLeft = 392
     end
     inherited btnGravar: TBitBtn
       Left = 287
+      ExplicitLeft = 287
     end
   end
   inherited DS_: TDataSource

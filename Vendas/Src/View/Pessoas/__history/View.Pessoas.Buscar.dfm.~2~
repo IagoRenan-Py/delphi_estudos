@@ -1,0 +1,12 @@
+inherited ViewPessoasBuscar: TViewPessoasBuscar
+  Caption = 'Pessoas buscar'
+  PixelsPerInch = 96
+  TextHeight = 13
+  inherited pnlGrid: TPanel
+    inherited pnlTotal: TPanel
+      inherited lblTotal: TLabel
+        Height = 20
+      end
+    end
+  end
+end

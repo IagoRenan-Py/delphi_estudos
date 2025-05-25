@@ -1,0 +1,29 @@
+unit Utils;
+
+interface
+
+uses
+  System.SysUtils,
+  System.Classes,
+  Exceptions.FieldName,
+  Vcl.Forms;
+
+type
+  TUtils = class
+  private
+  public
+    class procedure TratarExceptionsFieldName(const AForm: TForm; const E: ExceptionsFieldName);
+
+  end;
+
+implementation
+
+{ TUtils }
+
+class procedure TUtils.TratarExceptionsFieldName(const AForm: TForm;
+  const E: ExceptionsFieldName);
+begin
+
+end;
+
+end.

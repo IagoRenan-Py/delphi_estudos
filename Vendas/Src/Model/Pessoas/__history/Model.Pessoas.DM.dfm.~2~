@@ -1,0 +1,5 @@
+object ModelPessoasDM: TModelPessoasDM
+  OldCreateOrder = False
+  Height = 692
+  Width = 1085
+end

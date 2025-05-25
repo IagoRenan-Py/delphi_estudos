@@ -35,6 +35,7 @@ type
     procedure lblYoutubeMouseLeave(Sender: TObject);
     procedure Cidades1Click(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure Pessoas1Click(Sender: TObject);
   private
     { Private declarations }
   public
@@ -49,7 +50,8 @@ implementation
 {$R *.dfm}
 
 uses
-  View.Cidades.Buscar;
+  View.Cidades.Buscar,
+  View.Pessoas.Buscar;
 
 procedure TViewPrincipal.Cidades1Click(Sender: TObject);
 begin
@@ -81,6 +83,18 @@ end;
 procedure TViewPrincipal.lblYoutubeMouseLeave(Sender: TObject);
 begin
     TLabel(Sender).Font.Color := clWindowText;
+end;
+
+procedure TViewPrincipal.Pessoas1Click(Sender: TObject);
+begin
+  ViewPessoasBuscar := TViewPessoasBuscar.Create(nil);
+
+  try
+    ViewPessoasBuscar.ShowModal;
+  finally
+    FreeAndNil(ViewPessoasBuscar);
+  end;
+
 end;
 
 end.

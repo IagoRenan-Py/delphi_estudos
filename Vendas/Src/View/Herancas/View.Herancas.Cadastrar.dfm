@@ -13,6 +13,7 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
   KeyPreview = True
   OldCreateOrder = False
   Position = poScreenCenter
+  OnCreate = FormCreate
   OnKeyDown = FormKeyDown
   OnKeyPress = FormKeyPress
   PixelsPerInch = 96
@@ -24,10 +25,6 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
     Height = 311
     Align = alClient
     TabOrder = 0
-    ExplicitLeft = 112
-    ExplicitTop = 8
-    ExplicitWidth = 185
-    ExplicitHeight = 41
   end
   object pnlBottom: TPanel
     Left = 0
@@ -103,9 +100,6 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
         0000000000000000000000000000000000000000000000000000}
       TabOrder = 1
       OnClick = btnCancelarClick
-      ExplicitLeft = 708
-      ExplicitTop = 1
-      ExplicitHeight = 39
     end
     object btnGravar: TBitBtn
       AlignWithMargins = True
@@ -178,9 +172,6 @@ object ViewHerancasCadastrar: TViewHerancasCadastrar
         00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FFFF00FF}
       TabOrder = 0
       OnClick = btnGravarClick
-      ExplicitLeft = 633
-      ExplicitTop = 1
-      ExplicitHeight = 39
     end
   end
   object DS_: TDataSource

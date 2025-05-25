@@ -1,4 +1,4 @@
-unit Model.Cidades.DM;
+unit Model.Pessoas.DM;
 
 interface
 
@@ -6,7 +6,7 @@ uses
   System.SysUtils, System.Classes;
 
 type
-  TDataModule1 = class(TDataModule)
+  TModelPessoasDM = class(TDataModule)
   private
     { Private declarations }
   public
@@ -14,7 +14,7 @@ type
   end;
 
 var
-  DataModule1: TDataModule1;
+  ModelPessoasDM: TModelPessoasDM;
 
 implementation
 

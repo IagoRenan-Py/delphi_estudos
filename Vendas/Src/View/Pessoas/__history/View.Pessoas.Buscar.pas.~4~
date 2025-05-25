@@ -1,0 +1,47 @@
+unit View.Pessoas.Buscar;
+
+interface
+
+uses
+  Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
+  Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Herancas.Buscar, Data.DB,
+  Vcl.Menus, Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Vcl.Grids, Vcl.DBGrids,
+  Model.Pessoas.DM;
+
+type
+  TViewPessoasBuscar = class(TViewHerancasBuscar)
+  private
+    procedure BuscarDados; override;
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ViewPessoasBuscar: TViewPessoasBuscar;
+
+implementation
+
+{$R *.dfm}
+
+{ TViewPessoasBuscar }
+
+procedure TViewPessoasBuscar.BuscarDados;
+begin
+
+  LStrBuscar: string;
+  LCondicao: string;
+
+  LStrBuscar := QuotedStr('%'+ edtPesquisar.Text +'%').ToUpper;
+  case rdgFiltros.ItemIndex of
+    0: LCondicao:='WHERE ID LIKE ' + LStrBuscar;
+    1: LCondicao:='WHERE UPPER(NOME) LIKE ' + LStrBuscar;
+    2: LCondicao:='WHERE UPPER(UF) LIKE ' + LStrBuscar;
+  end;
+
+  ModelCidadesDM.CidadesBuscar(LCondicao);
+  inherited;
+
+end;
+
+end.

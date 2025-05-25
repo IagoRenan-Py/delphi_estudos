@@ -1,0 +1,102 @@
+unit Model.Pessoas.DM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,
+  Model.Conexao.DM, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
+
+type
+  TModelPessoasDM = class(TDataModule)
+    QPessoasCadastro: TFDQuery;
+    QPessoasBusca: TFDQuery;
+    QPessoasCadastroID: TIntegerField;
+    QPessoasCadastroNOME: TStringField;
+    QPessoasCadastroFANTASIA: TStringField;
+    QPessoasCadastroCLIENTE: TStringField;
+    QPessoasCadastroFORNECEDOR: TStringField;
+    QPessoasCadastroCEP: TStringField;
+    QPessoasCadastroID_CIDADE: TIntegerField;
+    QPessoasCadastroENDERECO: TStringField;
+    QPessoasCadastroNUMERO: TStringField;
+    QPessoasCadastroBAIRRO: TStringField;
+    QPessoasCadastroCOMPLEMENTO: TStringField;
+    QPessoasCadastroTELEFONE: TStringField;
+    QPessoasCadastroCELULAR: TStringField;
+    QPessoasCadastroEMAIL: TStringField;
+    QPessoasCadastroTIPO_JURIDICO: TIntegerField;
+    QPessoasCadastroCPF: TStringField;
+    QPessoasCadastroRG: TStringField;
+    QPessoasCadastroCNPJ: TStringField;
+    QPessoasCadastroIE: TStringField;
+    QPessoasCadastroATIVO: TStringField;
+    QPessoasCadastroNASCIMENTO: TDateField;
+    QPessoasCadastroDH_CADASTRO: TSQLTimeStampField;
+    QPessoasBuscaID: TIntegerField;
+    QPessoasBuscaNOME: TStringField;
+    QPessoasBuscaFANTASIA: TStringField;
+    QPessoasBuscaCLIENTE: TStringField;
+    QPessoasBuscaFORNECEDOR: TStringField;
+    QPessoasBuscaID_CIDADE: TIntegerField;
+    QPessoasBuscaUF: TStringField;
+    QPessoasBuscaENDERECO: TStringField;
+    QPessoasBuscaTELEFONE: TStringField;
+    QPessoasBuscaCELULAR: TStringField;
+    QPessoasBuscaCIDADENOME: TStringField;
+  private
+
+    { Private declarations }
+  public
+    procedure CadastrarGet(const AIdPessoa: Integer);
+    procedure PessoasBuscar(const ACondicao: string);
+    { Public declarations }
+  end;
+
+var
+  ModelPessoasDM: TModelPessoasDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+procedure TModelPessoasDM.CadastrarGet(const AIdPessoa: Integer);
+begin
+  QPessoasCadastro.Close;
+  QPessoasCadastro.SQL.Clear;
+  QPessoasCadastro.SQL.Add('SELECT * FROM PESSOA');
+  QPessoasCadastro.SQL.Add('WHERE (ID = :IdPessoa)');
+  QPessoasCadastro.ParamByName('IdPessoa').AsInteger := AIdPessoa;
+  QPessoasCadastro.Open;
+end;
+
+procedure TModelPessoasDM.PessoasBuscar(const ACondicao: string);
+begin
+  QPessoasBusca.Close;
+  QPessoasBusca.SQL.Clear;
+  QPessoasBusca.SQL.Add('SELECT                  '
+              + #13 + '    P.ID,                 '
+              + #13 + '    P.NOME,               '
+              + #13 + '    P.FANTASIA,           '
+              + #13 + '    P.CLIENTE,            '
+              + #13 + '    P.FORNECEDOR,         '
+              + #13 + '    P.ID_CIDADE,          '
+              + #13 + '    C.NOME AS CidadeNome, '
+              + #13 + '    C.UF,                 '
+              + #13 + '    P.ENDERECO,           '
+              + #13 + '    P.TELEFONE,           '
+              + #13 + '    P.CELULAR             '
+              + #13 + 'FROM                      '
+              + #13 + '    PESSOA p              '
+              + #13 + 'INNER JOIN                '
+              + #13 + '    CIDADE C ON C.ID = P.ID_CIDADE ');
+  QPessoasBusca.SQL.Add(ACondicao);
+  QPessoasBusca.Open;
+
+end;
+
+end.

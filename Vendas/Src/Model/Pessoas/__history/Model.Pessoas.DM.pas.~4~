@@ -1,0 +1,64 @@
+unit Model.Pessoas.DM;
+
+interface
+
+uses
+  System.SysUtils, System.Classes,
+  Model.Conexao.DM, FireDAC.Stan.Intf, FireDAC.Stan.Option, FireDAC.Stan.Param,
+  FireDAC.Stan.Error, FireDAC.DatS, FireDAC.Phys.Intf, FireDAC.DApt.Intf,
+  FireDAC.Stan.Async, FireDAC.DApt, Data.DB, FireDAC.Comp.DataSet,
+  FireDAC.Comp.Client;
+
+type
+  TModelPessoasDM = class(TDataModule)
+    QPessoasCadastro: TFDQuery;
+    QPessoasBusca: TFDQuery;
+    QPessoasCadastroID: TIntegerField;
+    QPessoasCadastroNOME: TStringField;
+    QPessoasCadastroFANTASIA: TStringField;
+    QPessoasCadastroCLIENTE: TStringField;
+    QPessoasCadastroFORNECEDOR: TStringField;
+    QPessoasCadastroCEP: TStringField;
+    QPessoasCadastroID_CIDADE: TIntegerField;
+    QPessoasCadastroENDERECO: TStringField;
+    QPessoasCadastroNUMERO: TStringField;
+    QPessoasCadastroBAIRRO: TStringField;
+    QPessoasCadastroCOMPLEMENTO: TStringField;
+    QPessoasCadastroTELEFONE: TStringField;
+    QPessoasCadastroCELULAR: TStringField;
+    QPessoasCadastroEMAIL: TStringField;
+    QPessoasCadastroTIPO_JURIDICO: TIntegerField;
+    QPessoasCadastroCPF: TStringField;
+    QPessoasCadastroRG: TStringField;
+    QPessoasCadastroCNPJ: TStringField;
+    QPessoasCadastroIE: TStringField;
+    QPessoasCadastroATIVO: TStringField;
+    QPessoasCadastroNASCIMENTO: TDateField;
+    QPessoasCadastroDH_CADASTRO: TSQLTimeStampField;
+    QPessoasBuscaID: TIntegerField;
+    QPessoasBuscaNOME: TStringField;
+    QPessoasBuscaFANTASIA: TStringField;
+    QPessoasBuscaCLIENTE: TStringField;
+    QPessoasBuscaFORNECEDOR: TStringField;
+    QPessoasBuscaID_CIDADE: TIntegerField;
+    QPessoasBuscaUF: TStringField;
+    QPessoasBuscaENDERECO: TStringField;
+    QPessoasBuscaTELEFONE: TStringField;
+    QPessoasBuscaCELULAR: TStringField;
+    QPessoasBuscaCIDADENOME: TStringField;
+  private
+    { Private declarations }
+  public
+    { Public declarations }
+  end;
+
+var
+  ModelPessoasDM: TModelPessoasDM;
+
+implementation
+
+{%CLASSGROUP 'Vcl.Controls.TControl'}
+
+{$R *.dfm}
+
+end.

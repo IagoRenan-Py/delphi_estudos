@@ -6,26 +6,32 @@ uses
   Winapi.Windows, Winapi.Messages, System.SysUtils, System.Variants, System.Classes, Vcl.Graphics,
   Vcl.Controls, Vcl.Forms, Vcl.Dialogs, View.Herancas.Cadastrar, Data.DB,
   Vcl.StdCtrls, Vcl.Buttons, Vcl.ExtCtrls, Model.Cidades.DM, Vcl.DBCtrls,
-  Vcl.Mask;
+  Vcl.Mask, RTTI.FieldName;
 
 type
   TViewCidadesCadastrar = class(TViewHerancasCadastrar)
     lbl: TLabel;
     edtCodigo: TDBEdit;
     lbl1: TLabel;
+
+    [FieldName('NOME')]
     edtNome: TDBEdit;
+
     lbl2: TLabel;
     lbl3: TLabel;
+
+    [FieldName('CODIGO_IBGE')]
     edtCodigoIBGE: TDBEdit;
+
+    [FieldName('UF')]
     cbxUF: TDBComboBox;
     procedure btnGravarClick(Sender: TObject);
-    procedure FormCreate(Sender: TObject);
     procedure FormShow(Sender: TObject);
   private
-    FIdRegistroAlterar: Integer;
+
     { Private declarations }
   public
-    property IdRegistroAlterar: Integer read FIdRegistroAlterar write FIdRegistroAlterar;
+
     { Public declarations }
   end;
 
@@ -33,46 +39,27 @@ implementation
 
 {$R *.dfm}
 
+uses
+  Exceptions.FieldName,
+  Utils;
+
 procedure TViewCidadesCadastrar.btnGravarClick(Sender: TObject);
 begin
-
-  if(Trim(edtNome.Text).IsEmpty)then
-  begin
-    edtNome.SetFocus;
-    raise Exception.Create('Preencha o campo nome');
+  try
+    DS_.DataSet.Post;
+  except
+    on E: ExceptionsFieldName do
+      TUtils.TratarExceptionsFieldName(Self, E);
   end;
-
-  if(Trim(cbxUF.Text).IsEmpty)then
-  begin
-    cbxUF.SetFocus;
-    raise Exception.Create('Preencha o campo UF');
-  end;
-
-  if(not Trim(edtCodigoIBGE.Text).IsEmpty)then
-  begin
-    if(Length(edtCodigoIBGE.Text) <> 7)then
-    begin
-      edtCodigoIBGE.SetFocus;
-      raise Exception.Create('Código do IBGE deve conter 7 carateres');
-    end;
-  end;
-
-  DS_.DataSet.Post;
 
   inherited;
-end;
-
-procedure TViewCidadesCadastrar.FormCreate(Sender: TObject);
-begin
-  inherited;
-  FIdRegistroAlterar := 0;
 end;
 
 procedure TViewCidadesCadastrar.FormShow(Sender: TObject);
 begin
   inherited;
 
-  ModelCidadesDM.CadastrarGet(FIdRegistroAlterar);
+  ModelCidadesDM.CadastrarGet(inherited IdRegistroAlterar);
 
   if(DS_.DataSet.IsEmpty)then
     DS_.DataSet.Append
